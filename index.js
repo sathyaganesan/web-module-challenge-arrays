@@ -31,6 +31,19 @@ var originalFlavors = ["Banana Nut Fudge",
     "Vanilla Burnt Almond",
     ]
 
+    let duplicateArray = [...originalFlavors];
+    
+// function copy(oldArray){
+    
+//     let copiedArray = [...oldArray];
+//     // console.log(oldArray, copiedArray);
+//         return copiedArray;
+// }
+        // let duplicateArray = copy(originalFlavors);
+        // // copy(originalFlavors);
+        // console.log("This is our duplicate");
+        // console.log(duplicateArray);
+
 /* Task 1: Confirm that the array is exactly 31 flavors. Your function should accept:
 
 (1) an array 
@@ -45,17 +58,16 @@ i.e. is31Flavors(originalFlavors) will return TRUE.*/
 function is31Flavors(originalFlavors){
     
         if (originalFlavors.length == 31) {
-            console.log(true);
+            console.log("Task 1 Answer:",true);
         }
         else {
-            console.log(false);
+            console.log("Task 1 Answer:",false);
         }    
     
     }
 
         is31Flavors(originalFlavors);
-    // console.log(originalFlavors.length);
-
+   
 /* Task 2: Corporate has come to you with an idea for a new flavor: Rainbow Sherbert! They think this will be a game changer. 
 You need to modify the array to include this flavor. 
 
@@ -68,13 +80,12 @@ Your function should add the flavor to the front of the array and console.log th
 
 For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"] */ 
 
-function addFlavor(){
-
-    originalFlavors.unshift("Rainbow Sherbert");
-    console.log(originalFlavors);
+function addFlavor(flavour){
+       originalFlavors.unshift(flavour);
+    console.log("Task2 Answer:", originalFlavors);
 
 }
-    addFlavor();
+    addFlavor("Rainbow Sherbert");
 
 
 
@@ -88,12 +99,12 @@ Your function should remove a flavor from the end of the array and console.log t
 
 For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/ 
 
-function removeLastFlavor(){
+function removeLastFlavor(originalFlavors){
     
     originalFlavors.pop();
-    console.log(originalFlavors);
+    console.log("Task 3 Answer:", originalFlavors);
 }
-    removeLastFlavor();
+    removeLastFlavor(originalFlavors);
 
 /* Task 4: Write a function that returns a flavor at a given index in the array.
 
@@ -104,17 +115,12 @@ Your function should accept:
 
 For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
 
-function getFlavorByIndex(originalFlavors, itemProvided) {
+function getFlavorByIndex(flavourArray, indexNum) {
 
-    for (let i = 0; i <= originalFlavors.length; i++){
-        if(originalFlavors[i] === itemProvided){
-            console.log(originalFlavors);
-        }
-    }
-
+    console.log("Task 4 Answer:", flavourArray[indexNum]);
 }
 
-    getFlavorByIndex(originalFlavors, 2);
+    getFlavorByIndex(originalFlavors, 5);
 
 
 /* Task 5: As corporate wants to add more and more flavors to their lineup, they've realized that they need to remove flavors based on 
@@ -132,13 +138,16 @@ Hint: You can use .splice() for this
 
 */
 
-function removeFlavorByName(){
-    originalFlavors.splice()
-
-    /*code here*/
+function removeFlavorByName(flavorArray, flavorName){
+    for(let i = 0; i < flavorArray.length; i++) {
+        if(flavorArray[i] === flavorName) {
+            flavorArray.splice(i, 1);
+        }
+    }
+    console.log("Task 5 Answer:", "After Removed", flavorArray);
 
 }
-
+        removeFlavorByName(originalFlavors, "Vanilla");
 
 /* Task 6: With all of these changes going on, we don't want to lose track of the actual, original 31 flavors. 
 Write a function called copy that makes a copy of the array. 
@@ -149,15 +158,14 @@ Your function should accept:
 
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
 
-function copy(){
+function copy(oldArray){
     
-    console.log(originalFlavors);
-    var newArray = [...originalFlavors];
-    console.log(newArray);
+    let copiedArray = [...oldArray];
+    console.log("Task 6 Answer:", oldArray, copiedArray);
 
 }
 
-    copy();
+    copy(originalFlavors); //without calling the arrgument how come result executed.
 
 /* Task 7: July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. 
 Write a function that checks every item in the array for a given string and returns a new array called filteredArray with just these values. 
@@ -177,17 +185,16 @@ DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem.
 
 hint - you can use the .includes method to help you solve this */
 
-function filterByWord(originalFlavors, flavor){
+function filterByWord(fullArray, flavor){
 
-    for (let i = 0; i < originalFlavors.length; i++) {
-        if (flavor == originalFlavors) {
-            
+    for (let i = 0; i < fullArray.length; i++) {
+        if (fullArray[i].includes(flavor) === flavor) {
+            console.log(fullArray[i]);
         }
     }
-
 }
 
-
+    filterByWord(originalFlavors, "chocolate");
 
 /* 🧁🍦🍨 STRETCH 🍨🍦🍫*/ 
 
@@ -216,7 +223,8 @@ Your function should accept 4 different arrays,
 
 and should return a new array called randomFlavors with a length 31.
 
-forExample, getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors) might return ["Strawberry Cheesecake", "Eggnog,"..."Chocolate"].*/
+forExample, getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors) might return 
+["Strawberry Cheesecake", "Eggnog,"..."Chocolate"].*/
 
 // Data ⬇️
 var newFlavors = ["Date night",
@@ -290,9 +298,12 @@ var regionalFlavors = ["Pink Bubblegum",
     "Quarterback Crunch",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
+//originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
+// function getRandomFlavors(/*code here*/){
+//     combinedArray = [...originalFlavors, ...currentFlavors, ...seasonalFlavors, ...regionalFlavors];
+//     for(let i = 0; i > combinedArray.length; i++) {
+//         if()
+//     }
+//     /*code here*/
 
-function getRandomFlavors(/*code here*/){
-
-    /*code here*/
-
-}
+// }
